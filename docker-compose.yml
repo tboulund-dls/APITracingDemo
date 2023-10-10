@@ -1,0 +1,14 @@
+services: 
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+  
+  app:
+    build:
+      context: .
+      dockerfile: APITraceDemo/Dockerfile
+    depends_on: 
+      - zipkin
+    ports:
+      - 2222:80
